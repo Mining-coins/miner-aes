@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+    environment {
+        PATH='/usr/local/bin:/usr/bin:/bin'
+	}
+    stages {
+        stage('Clone from git') {
+            steps {
+               
+                    git credentialsId: '69f6a747-c064-4ebb-8201-64b9d7bf556f', url: 'git@github.com:arun-nallamayan/lazyIonic.git'
+
+            }
+        }
+        stage('NPM Check') {
+            steps {
+                   sh 'pwd'
+                   sh 'which npm'
+     
+            }
+        }
+        stage('Install ionic'){
+            steps {
+                sh 'npm install ionic'
+                 }
+            }
+        
+    }
+}
